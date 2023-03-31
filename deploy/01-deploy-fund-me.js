@@ -1,3 +1,5 @@
+const { networkConfig } = require("../helper-hardhat-config");
+
 module.exports = async (hre) => {
   //HRE,the hardhat runtime environment is an object containing all the functionality the hardhat exposes when running a task,test or script.
 
@@ -11,4 +13,12 @@ module.exports = async (hre) => {
 
   //attempting to retrieve the current chain ID of the Hardhat network being used for deployment.
   const chainId = network.config.chainId;
+
+  const ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"];
+
+  const fundMe = await deploy("FundMe", {
+    from: deployer,
+    args: [],
+    log: true,
+  });
 };
