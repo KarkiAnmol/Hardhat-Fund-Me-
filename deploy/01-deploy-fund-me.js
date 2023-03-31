@@ -1,4 +1,5 @@
 const { networkConfig } = require("../helper-hardhat-config");
+const { network } = require("hardhat");
 
 module.exports = async (hre) => {
   //HRE,the hardhat runtime environment is an object containing all the functionality the hardhat exposes when running a task,test or script.
