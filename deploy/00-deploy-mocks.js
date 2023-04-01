@@ -31,4 +31,5 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 };
 
 // Set the tags for the deployment script
+//By including these tags in the code, it makes it easier to deploy only the mocks during testing, which can help speed up the testing process and reduce dependencies on external resources.
 module.exports.tags = ["all", "mocks"];
