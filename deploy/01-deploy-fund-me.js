@@ -3,6 +3,7 @@ const {
   developmentChains,
 } = require("../helper-hardhat-config");
 const { network } = require("hardhat");
+const { verify } = require("../utils/verify");
 
 module.exports = async (hre) => {
   //HRE,the hardhat runtime environment is an object containing all the functionality the hardhat exposes when running a task,test or script.
@@ -41,6 +42,13 @@ module.exports = async (hre) => {
     args: [ethUsdPriceFeedAddress],
     log: true,
   });
+
+  if (
+    !developmentChains.includes(network.name) &&
+    process.env.ETHERSCAN_API_KEY
+  ) {
+    await verify(fundMe.address, ethUsdPriceFeedAddress);
+  }
   // Logging a separator string to the console for clarity
   log(".........................................................");
 };
